@@ -20,3 +20,8 @@ jobs:
       - name: "Build gradle"
         run: |
           chmod +x ci/build-app.sh && ci/build-app.sh
+      - name: "Upload artifacts"
+        uses: actions/upload-artifact@v3
+        with:
+          name: code
+          path: "."
