@@ -13,6 +13,10 @@ jobs:
     steps:
       - name: "Clone repo"
         uses: actions/checkout@v3
+      - name: "Run tests"
+        run: |-
+          chmod +x ci/unit-test-app.sh
+          ./ci/unit-test-app.sh
       - name: "Build gradle"
         run: |
           chmod +x ci/build-app.sh && ci/build-app.sh
