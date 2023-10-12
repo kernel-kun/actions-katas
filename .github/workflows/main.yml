@@ -49,8 +49,8 @@ jobs:
       packages: write
 
     env:
-      docker_username: ${{ vars.DOCKER_USERNAME }}
-      docker_password: ${{ secrets.DOCKER_TOKEN }}
+      docker_username: ${{ github.actor }}
+      docker_password: ${{ secrets.GITHUB_TOKEN }}
       GIT_COMMIT: ${{ github.sha }}
 
     steps:
