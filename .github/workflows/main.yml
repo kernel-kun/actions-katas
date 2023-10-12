@@ -5,7 +5,6 @@ on:
   pull_request:
     branches: main
   workflow_dispatch:
-    branches: main
 jobs:
   clone:
     runs-on: ubuntu-latest
@@ -13,14 +12,15 @@ jobs:
       - name: "Clone repo"
         uses: actions/checkout@v3
       - name: "Upload Repo"
-      uses: actions/upload-artifact@v3
-      with:
-        name: code
-        path: "."
+        uses: actions/upload-artifact@v3
+        with:
+          name: code
+          path: "."
   build_test:
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
     needs: [clone]
+    steps:
       - name: "Download Repo"
         uses: actions/download-artifact@v3
         with:
@@ -49,7 +49,7 @@ jobs:
       packages: write
 
     env:
-      docker_username: ${{ var.DOCKER_USERNAME }}
+      docker_username: ${{ vars.DOCKER_USERNAME }}
       docker_password: ${{ secrets.DOCKER_TOKEN }}
       GIT_COMMIT: ${{ github.sha }}
 
