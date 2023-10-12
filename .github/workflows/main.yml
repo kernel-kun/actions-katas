@@ -16,4 +16,4 @@ jobs:
       - name: "Build gradle"
         run: |
           chmod +x ci/build-app.sh
-          source ci/build-app.sh
+          cd ci && ./build-app.sh
