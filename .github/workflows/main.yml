@@ -1,0 +1,19 @@
+name: "Build gradle project"
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+  workflow_dispatch:
+    branches: main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: gradle:latest
+    steps:
+      - name: "Clone repo"
+        uses: actions/checkout@v3
+      - name: "Build gradle"
+        run: |
+          chmod +x ci/build-app.sh
+          source ci/build-app.sh
